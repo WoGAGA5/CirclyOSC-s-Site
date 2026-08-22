@@ -298,40 +298,40 @@ button:hover {
     cursor: pointer;
     max-width: 250px;
     user-select: none;
+    -webkit-user-drag: none;
+
+    transition:
+        transform 0.08s ease-out;
 }
 
-.circly-click-animation {
-    animation: circlyClick 0.2s ease;
+/* ACTUAL SQUISH WHILE PRESSED */
+#circlyClicker.circly-pressed {
+    transform: scale(0.82, 0.72) rotate(-3deg);
 }
 
-@keyframes circlyClick {
+/* Little bounce when released */
+#circlyClicker.circly-release {
+    animation: circlyBounce 0.22s ease-out;
+}
+
+@keyframes circlyBounce {
 
     0% {
-        transform:
-            scale(1)
-            rotate(0deg);
+        transform: scale(0.82, 0.72) rotate(-3deg);
     }
 
-    35% {
-        transform:
-            scale(0.82)
-            rotate(-6deg);
+    45% {
+        transform: scale(1.08, 0.94) rotate(2deg);
     }
 
-    65% {
-        transform:
-            scale(1.12)
-            rotate(6deg);
+    75% {
+        transform: scale(0.97, 1.03) rotate(-1deg);
     }
 
     100% {
-        transform:
-            scale(1)
-            rotate(0deg);
+        transform: scale(1, 1) rotate(0deg);
     }
-
 }
-
 
 /* =========================
    GALLERY

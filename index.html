@@ -275,10 +275,9 @@
 
             <img
                 id="circlyClicker"
-                src="images/circly3.png"
+                src="images/circly1.png"
                 alt="Click Circly!"
-                title="CLICK ME!"
-                onclick="clickCircly()">
+                title="CLICK ME!">
 
 
             <p>
@@ -438,11 +437,37 @@
         let generatorCost =
             Number(localStorage.getItem("generatorCost")) || 100;
 
+        let circlyUpgraded =
+            localStorage.getItem("circlyUpgraded") === "true";
+
 
         /* Upgrade sound */
 
         const upgradeSound =
-            new Audio("sound/BFDI_GASP!.ogg");
+            new Audio("sounds/BFDI_GASP!.ogg");
+
+
+        /* Get idle image */
+
+        function getIdleImage() {
+
+            if (circlyUpgraded) {
+                return "images/circly2.png";
+            }
+
+            return "images/circly1.png";
+        }
+
+
+        /* Update Circly image */
+
+        function updateCirclyImage() {
+
+            document.getElementById(
+                "circlyClicker"
+            ).src = getIdleImage();
+
+        }
 
 
         /* Save game */
@@ -478,6 +503,11 @@
                 "generatorCost",
                 generatorCost
             );
+
+            localStorage.setItem(
+                "circlyUpgraded",
+                circlyUpgraded
+            );
         }
 
 
@@ -493,10 +523,6 @@
             document.getElementById("cps")
                 .textContent =
                 "Circlys per second: " +
-                cps;
-
-            document.getElementById("generatorDisplay")
-                .textContent =
                 cps;
 
             document.getElementById("clickPower")
@@ -525,42 +551,79 @@
                 .textContent =
                 generatorCost;
 
+            updateCirclyImage();
+
             saveGame();
         }
 
 
-        /* Click animation */
+        /* =========================
+           CIRCLY PRESSING
+           ========================= */
 
-        function animateCircly() {
+        const circlyImage =
+            document.getElementById("circlyClicker");
 
-            const circly =
-                document.getElementById("circlyClicker");
 
-            circly.classList.remove(
-                "circly-click-animation"
-            );
+        function circlyPressed() {
 
-            void circly.offsetWidth;
+            circlyImage.src =
+                "images/circly3.png";
 
-            circly.classList.add(
-                "circly-click-animation"
-            );
         }
 
 
-        /* Click Circly */
+        function circlyReleased() {
+
+            circlyImage.src =
+                getIdleImage();
+
+        }
+
+
+        circlyImage.addEventListener(
+            "mousedown",
+            circlyPressed
+        );
+
+        circlyImage.addEventListener(
+            "mouseup",
+            circlyReleased
+        );
+
+        circlyImage.addEventListener(
+            "mouseleave",
+            circlyReleased
+        );
+
+
+        circlyImage.addEventListener(
+            "touchstart",
+            circlyPressed
+        );
+
+        circlyImage.addEventListener(
+            "touchend",
+            circlyReleased
+        );
+
+
+        /* =========================
+           CLICK CIRCly
+           ========================= */
 
         function clickCircly() {
 
             circlys += clickPower;
 
-            animateCircly();
-
             updateClicker();
+
         }
 
 
-        /* Buy upgrade */
+        /* =========================
+           UPGRADES
+           ========================= */
 
         function buyUpgrade() {
 
@@ -589,41 +652,32 @@
             upgradeLevel += 1;
 
 
-            /*
-             * Every upgrade becomes stronger.
-             */
+            /* Increase click power */
 
-            clickPower += upgradeLevel * 2;
+            clickPower +=
+                upgradeLevel * 2;
 
 
-            /*
-             * Change to circly2 after
-             * the first upgrade.
-             */
+            /* Switch to upgraded Circly */
 
-            document.getElementById(
-                "circlyClicker"
-            ).src =
+            circlyUpgraded = true;
+
+            circlyImage.src =
                 "images/circly2.png";
 
 
-            /*
-             * Play BFDI gasp.
-             */
+            /* Play BFDI gasp */
 
             upgradeSound.currentTime = 0;
 
             upgradeSound.play().catch(() => {
                 console.log(
-                    "Browser blocked the upgrade sound."
+                    "The browser blocked the upgrade sound."
                 );
             });
 
 
-            /*
-             * Make the next upgrade
-             * more expensive.
-             */
+            /* Increase cost */
 
             upgradeCost =
                 Math.floor(
@@ -635,7 +689,9 @@
         }
 
 
-        /* Generator */
+        /* =========================
+           GENERATOR
+           ========================= */
 
         function buyGenerator() {
 
@@ -664,18 +720,25 @@
         }
 
 
-        /* Automatic generation */
+        /* =========================
+           AUTOMATIC GENERATION
+           ========================= */
 
-        setInterval(function () {
+        setInterval(
+            function() {
 
-            circlys += cps;
+                circlys += cps;
 
-            updateClicker();
+                updateClicker();
 
-        }, 1000);
+            },
+            1000
+        );
 
 
-        /* Reset game */
+        /* =========================
+           RESET
+           ========================= */
 
         function resetClicker() {
 
@@ -701,18 +764,20 @@
 
             generatorCost = 100;
 
+            circlyUpgraded = false;
 
-            document.getElementById(
-                "circlyClicker"
-            ).src =
-                "images/circly3.png";
+
+            circlyImage.src =
+                "images/circly1.png";
 
 
             updateClicker();
         }
 
 
-        /* Start game */
+        /* =========================
+           START
+           ========================= */
 
         updateClicker();
 
