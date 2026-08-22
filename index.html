@@ -16,6 +16,7 @@
         <a href="#youtube">YouTube</a>
         <a href="#projects">Projects</a>
         <a href="#ios6">iOS 6</a>
+        <a href="#clicker">Circly Clicker</a>
         <a href="#gallery">Gallery</a>
         <a href="brainrotcorner/">Brainrot Corner</a>
     </nav>
@@ -80,7 +81,9 @@
                 Go watch my newest video hahaha.
             </p>
 
-            <a href="https://www.youtube.com/shorts/BAD6EVmV7z8" target="_blank">
+            <a
+                href="https://www.youtube.com/shorts/BAD6EVmV7z8"
+                target="_blank">
                 Watch it →
             </a>
 
@@ -99,6 +102,7 @@
             So you may know me as NSMG6, h, Or CirclyOsc,
             or if you are really going back.. LazyPerson18 and NOOBYNOOB.
         </p>
+
 
         <div class="card">
 
@@ -123,7 +127,7 @@
 
             <p>
                 Currently coding:
-                <span>HTML + CSS</span>
+                <span>HTML + CSS + JavaScript</span>
             </p>
 
             <p>
@@ -143,7 +147,9 @@
         <h2>YouTube</h2>
 
         <p>
-            <a href="https://youtube.com/@LazyPerson18" target="_blank">
+            <a
+                href="https://youtube.com/@LazyPerson18"
+                target="_blank">
                 My YouTube
             </a>
         </p>
@@ -221,6 +227,7 @@
             I made this thing in Sekai. Try it out!
         </p>
 
+
         <div class="iphone-frame">
 
             <div class="iphone-screen" id="iphone-screen">
@@ -230,6 +237,122 @@
                 </button>
 
             </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Circly Clicker -->
+
+    <section id="clicker">
+
+        <h2>Circly Clicker™</h2>
+
+        <p>
+            CLICK CIRCly. GET CIRClys. BUY UPGRADES.
+        </p>
+
+
+        <div class="card">
+
+            <h2 id="circlyCount">
+                Circlys: 0
+            </h2>
+
+            <p id="cps">
+                Circlys per second: 0
+            </p>
+
+            <p id="clickPower">
+                Circlys per click: 1
+            </p>
+
+
+            <img
+                id="circlyClicker"
+                src="images/circly.png"
+                alt="Click Circly!"
+                title="CLICK ME!">
+
+
+            <p>
+                <button onclick="clickCircly()">
+                    CLICK CIRCly!
+                </button>
+            </p>
+
+        </div>
+
+
+        <!-- Upgrades -->
+
+        <div class="card">
+
+            <h3>Upgrades</h3>
+
+
+            <p>
+                <strong>Double Circly</strong><br>
+                Doubles your Circlys per click.
+            </p>
+
+            <p>
+                Cost:
+                <span id="doubleCost">25</span>
+                Circlys
+            </p>
+
+            <button onclick="buyDoubleClick()">
+                Buy Upgrade
+            </button>
+
+
+            <hr>
+
+
+            <p>
+                <strong>Circly Generator</strong><br>
+                Automatically generates Circlys.
+            </p>
+
+            <p>
+                Cost:
+                <span id="generatorCost">100</span>
+                Circlys
+            </p>
+
+            <button onclick="buyGenerator()">
+                Buy Upgrade
+            </button>
+
+
+            <hr>
+
+
+            <p>
+                <strong>MEGA CIRCLY</strong><br>
+                Gives you a huge boost to your clicking power.
+            </p>
+
+            <p>
+                Cost:
+                <span id="megaCost">1000</span>
+                Circlys
+            </p>
+
+            <button onclick="buyMegaCircly()">
+                BUY MEGA CIRCLY
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <button onclick="resetClicker()">
+                Reset Clicker
+            </button>
 
         </div>
 
@@ -269,6 +392,11 @@
 
 
     <script>
+
+        /* =========================
+           iOS 6 SIMULATOR
+           ========================= */
+
         function startIOS6() {
 
             const screen =
@@ -282,6 +410,204 @@
                 </iframe>
             `;
         }
+
+
+        /* =========================
+           CIRCLY CLICKER
+           ========================= */
+
+        let circlys =
+            Number(localStorage.getItem("circlys")) || 0;
+
+        let clickPower =
+            Number(localStorage.getItem("clickPower")) || 1;
+
+        let cps =
+            Number(localStorage.getItem("cps")) || 0;
+
+        let doubleCost =
+            Number(localStorage.getItem("doubleCost")) || 25;
+
+        let generatorCost =
+            Number(localStorage.getItem("generatorCost")) || 100;
+
+        let megaCost =
+            Number(localStorage.getItem("megaCost")) || 1000;
+
+
+        function saveGame() {
+
+            localStorage.setItem(
+                "circlys",
+                circlys
+            );
+
+            localStorage.setItem(
+                "clickPower",
+                clickPower
+            );
+
+            localStorage.setItem(
+                "cps",
+                cps
+            );
+
+            localStorage.setItem(
+                "doubleCost",
+                doubleCost
+            );
+
+            localStorage.setItem(
+                "generatorCost",
+                generatorCost
+            );
+
+            localStorage.setItem(
+                "megaCost",
+                megaCost
+            );
+        }
+
+
+        function updateClicker() {
+
+            document.getElementById("circlyCount")
+                .textContent =
+                "Circlys: " +
+                Math.floor(circlys);
+
+            document.getElementById("cps")
+                .textContent =
+                "Circlys per second: " +
+                cps;
+
+            document.getElementById("clickPower")
+                .textContent =
+                "Circlys per click: " +
+                clickPower;
+
+            document.getElementById("doubleCost")
+                .textContent =
+                doubleCost;
+
+            document.getElementById("generatorCost")
+                .textContent =
+                generatorCost;
+
+            document.getElementById("megaCost")
+                .textContent =
+                megaCost;
+
+            saveGame();
+        }
+
+
+        function clickCircly() {
+
+            circlys += clickPower;
+
+            updateClicker();
+
+        }
+
+
+        document
+            .getElementById("circlyClicker")
+            .addEventListener("click", clickCircly);
+
+
+        function buyDoubleClick() {
+
+            if (circlys >= doubleCost) {
+
+                circlys -= doubleCost;
+
+                clickPower *= 2;
+
+                doubleCost =
+                    Math.floor(doubleCost * 2.5);
+
+                updateClicker();
+
+            }
+
+        }
+
+
+        function buyGenerator() {
+
+            if (circlys >= generatorCost) {
+
+                circlys -= generatorCost;
+
+                cps += 1;
+
+                generatorCost =
+                    Math.floor(generatorCost * 1.8);
+
+                updateClicker();
+
+            }
+
+        }
+
+
+        function buyMegaCircly() {
+
+            if (circlys >= megaCost) {
+
+                circlys -= megaCost;
+
+                clickPower += 25;
+
+                cps += 5;
+
+                megaCost =
+                    Math.floor(megaCost * 3);
+
+                updateClicker();
+
+            }
+
+        }
+
+
+        function resetClicker() {
+
+            const confirmReset =
+                confirm(
+                    "Are you sure you want to reset ALL your Circlys?"
+                );
+
+            if (!confirmReset) {
+                return;
+            }
+
+            circlys = 0;
+            clickPower = 1;
+            cps = 0;
+            doubleCost = 25;
+            generatorCost = 100;
+            megaCost = 1000;
+
+            updateClicker();
+
+        }
+
+
+        /* Automatic Circly generation */
+
+        setInterval(function () {
+
+            circlys += cps;
+
+            updateClicker();
+
+        }, 1000);
+
+
+        updateClicker();
+
     </script>
 
 </body>
