@@ -18,6 +18,7 @@
         <a href="#ios6">iOS 6</a>
         <a href="#clicker">Circly Clicker</a>
         <a href="#gallery">Gallery</a>
+        <a href="aigen.html">AI Generator</a>
         <a href="brainrotcorner/">Brainrot Corner</a>
     </nav>
 
@@ -39,7 +40,7 @@
 
         <div class="card">
 
-            <h2>Welcome to my website!</h2>
+            <h2>My Little Corner™</h2>
 
             <p>
                 This is basically my little corner of the internet.
@@ -103,7 +104,6 @@
             or if you are really going back.. LazyPerson18 and NOOBYNOOB.
         </p>
 
-
         <div class="card">
 
             <h3>What I Make</h3>
@@ -154,7 +154,6 @@
             </a>
         </p>
 
-
         <h2>My Latest Video</h2>
 
         <iframe
@@ -174,7 +173,6 @@
     <section id="projects">
 
         <h2>My Projects</h2>
-
 
         <div class="card">
 
@@ -226,7 +224,6 @@
         <p>
             I made this thing in Sekai. Try it out!
         </p>
-
 
         <div class="iphone-frame">
 
@@ -282,7 +279,7 @@
 
             <p>
                 <button onclick="clickCircly()">
-                    Click the circly HAHAHAHHA!
+                    CLICK CIRCly!
                 </button>
             </p>
 
@@ -391,6 +388,10 @@
             © 2026 Circly
         </p>
 
+        <p>
+            My Little Corner™
+        </p>
+
     </section>
 
 
@@ -441,36 +442,18 @@
             localStorage.getItem("circlyUpgraded") === "true";
 
 
-        /* Upgrade sound */
-
         const upgradeSound =
             new Audio("sounds/BFDI_GASP!.ogg");
 
 
-        /* Get idle image */
-
         function getIdleImage() {
 
-            if (circlyUpgraded) {
-                return "images/circly2.png";
-            }
-
-            return "images/circly.png";
-        }
-
-
-        /* Update Circly image */
-
-        function updateCirclyImage() {
-
-            document.getElementById(
-                "circlyClicker"
-            ).src = getIdleImage();
+            return circlyUpgraded
+                ? "images/circly2.png"
+                : "images/circly.png";
 
         }
 
-
-        /* Save game */
 
         function saveGame() {
 
@@ -508,10 +491,9 @@
                 "circlyUpgraded",
                 circlyUpgraded
             );
+
         }
 
-
-        /* Update display */
 
         function updateClicker() {
 
@@ -551,79 +533,94 @@
                 .textContent =
                 generatorCost;
 
-            updateCirclyImage();
+            document.getElementById("generatorDisplay")
+                .textContent =
+                cps;
+
+            document.getElementById("circlyClicker")
+                .src =
+                getIdleImage();
 
             saveGame();
+
         }
 
-
-        /* =========================
-           CIRCLY PRESSING
-           ========================= */
 
         const circlyImage =
             document.getElementById("circlyClicker");
 
 
-        function circlyPressed() {
+        function pressCircly() {
 
             circlyImage.src =
                 "images/circly3.png";
 
+            circlyImage.classList.add(
+                "circly-pressed"
+            );
+
         }
 
 
-        function circlyReleased() {
+        function releaseCircly() {
 
             circlyImage.src =
                 getIdleImage();
+
+            circlyImage.classList.remove(
+                "circly-pressed"
+            );
+
+            circlyImage.classList.remove(
+                "circly-release"
+            );
+
+            void circlyImage.offsetWidth;
+
+            circlyImage.classList.add(
+                "circly-release"
+            );
 
         }
 
 
         circlyImage.addEventListener(
             "mousedown",
-            circlyPressed
+            pressCircly
         );
 
         circlyImage.addEventListener(
             "mouseup",
-            circlyReleased
+            releaseCircly
         );
 
         circlyImage.addEventListener(
             "mouseleave",
-            circlyReleased
+            releaseCircly
         );
 
 
         circlyImage.addEventListener(
             "touchstart",
-            circlyPressed
+            pressCircly
         );
 
         circlyImage.addEventListener(
             "touchend",
-            circlyReleased
+            releaseCircly
         );
 
-
-        /* =========================
-           CLICK CIRCly
-           ========================= */
 
         function clickCircly() {
 
             circlys += clickPower;
 
+            releaseCircly();
+
             updateClicker();
 
         }
 
-
-        /* =========================
-           UPGRADES
-           ========================= */
 
         function buyUpgrade() {
 
@@ -634,6 +631,7 @@
                 );
 
                 return;
+
             }
 
 
@@ -644,6 +642,7 @@
                 );
 
                 return;
+
             }
 
 
@@ -651,33 +650,16 @@
 
             upgradeLevel += 1;
 
-
-            /* Increase click power */
-
             clickPower +=
                 upgradeLevel * 2;
 
-
-            /* Switch to upgraded Circly */
-
             circlyUpgraded = true;
 
-            circlyImage.src =
-                "images/circly2.png";
-
-
-            /* Play BFDI gasp */
 
             upgradeSound.currentTime = 0;
 
-            upgradeSound.play().catch(() => {
-                console.log(
-                    "The browser blocked the upgrade sound."
-                );
-            });
+            upgradeSound.play().catch(() => {});
 
-
-            /* Increase cost */
 
             upgradeCost =
                 Math.floor(
@@ -686,12 +668,9 @@
 
 
             updateClicker();
+
         }
 
-
-        /* =========================
-           GENERATOR
-           ========================= */
 
         function buyGenerator() {
 
@@ -702,6 +681,7 @@
                 );
 
                 return;
+
             }
 
 
@@ -709,20 +689,15 @@
 
             cps += 1;
 
-
             generatorCost =
                 Math.floor(
                     generatorCost * 1.8
                 );
 
-
             updateClicker();
+
         }
 
-
-        /* =========================
-           AUTOMATIC GENERATION
-           ========================= */
 
         setInterval(
             function() {
@@ -735,10 +710,6 @@
             1000
         );
 
-
-        /* =========================
-           RESET
-           ========================= */
 
         function resetClicker() {
 
@@ -759,7 +730,7 @@
             cps = 0;
 
             upgradeLevel = 0;
- 
+
             upgradeCost = 25;
 
             generatorCost = 100;
@@ -767,17 +738,10 @@
             circlyUpgraded = false;
 
 
-            circlyImage.src =
-                "images/circly.png";
-
-
             updateClicker();
+
         }
 
-
-        /* =========================
-           START
-           ========================= */
 
         updateClicker();
 
