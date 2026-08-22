@@ -268,12 +268,17 @@
                 Circlys per click: 1
             </p>
 
+            <p id="upgradeLevel">
+                Upgrade Level: 0 / 20
+            </p>
+
 
             <img
                 id="circlyClicker"
-                src="images/circly.png"
+                src="images/circly3.png"
                 alt="Click Circly!"
-                title="CLICK ME!">
+                title="CLICK ME!"
+                onclick="clickCircly()">
 
 
             <p>
@@ -291,29 +296,37 @@
 
             <h3>Upgrades</h3>
 
+            <p>
+                Make Circly stronger!
+            </p>
 
             <p>
-                <strong>Double Circly</strong><br>
-                Doubles your Circlys per click.
+                Next Upgrade:
+                <span id="upgradeNumber">1</span> / 20
             </p>
 
             <p>
                 Cost:
-                <span id="doubleCost">25</span>
+                <span id="upgradeCost">25</span>
                 Circlys
             </p>
 
-            <button onclick="buyDoubleClick()">
-                Buy Upgrade
+            <button onclick="buyUpgrade()">
+                BUY UPGRADE
             </button>
 
+        </div>
 
-            <hr>
 
+        <!-- Generator -->
+
+        <div class="card">
+
+            <h3>Circly Generator</h3>
 
             <p>
-                <strong>Circly Generator</strong><br>
-                Automatically generates Circlys.
+                Circlys per second:
+                <span id="generatorDisplay">0</span>
             </p>
 
             <p>
@@ -323,30 +336,13 @@
             </p>
 
             <button onclick="buyGenerator()">
-                Buy Upgrade
-            </button>
-
-
-            <hr>
-
-
-            <p>
-                <strong>MEGA CIRCLY</strong><br>
-                Gives you a huge boost to your clicking power.
-            </p>
-
-            <p>
-                Cost:
-                <span id="megaCost">1000</span>
-                Circlys
-            </p>
-
-            <button onclick="buyMegaCircly()">
-                BUY MEGA CIRCLY
+                BUY GENERATOR
             </button>
 
         </div>
 
+
+        <!-- Reset -->
 
         <div class="card">
 
@@ -370,6 +366,14 @@
             <img
                 src="images/circly.png"
                 alt="Circly's picture">
+
+            <img
+                src="images/circly2.png"
+                alt="Circly 2">
+
+            <img
+                src="images/circly3.png"
+                alt="Circly 3">
 
         </div>
 
@@ -425,15 +429,23 @@
         let cps =
             Number(localStorage.getItem("cps")) || 0;
 
-        let doubleCost =
-            Number(localStorage.getItem("doubleCost")) || 25;
+        let upgradeLevel =
+            Number(localStorage.getItem("upgradeLevel")) || 0;
+
+        let upgradeCost =
+            Number(localStorage.getItem("upgradeCost")) || 25;
 
         let generatorCost =
             Number(localStorage.getItem("generatorCost")) || 100;
 
-        let megaCost =
-            Number(localStorage.getItem("megaCost")) || 1000;
 
+        /* Upgrade sound */
+
+        const upgradeSound =
+            new Audio("sound/BFDI_GASP!.ogg");
+
+
+        /* Save game */
 
         function saveGame() {
 
@@ -453,21 +465,23 @@
             );
 
             localStorage.setItem(
-                "doubleCost",
-                doubleCost
+                "upgradeLevel",
+                upgradeLevel
+            );
+
+            localStorage.setItem(
+                "upgradeCost",
+                upgradeCost
             );
 
             localStorage.setItem(
                 "generatorCost",
                 generatorCost
             );
-
-            localStorage.setItem(
-                "megaCost",
-                megaCost
-            );
         }
 
+
+        /* Update display */
 
         function updateClicker() {
 
@@ -481,121 +495,176 @@
                 "Circlys per second: " +
                 cps;
 
+            document.getElementById("generatorDisplay")
+                .textContent =
+                cps;
+
             document.getElementById("clickPower")
                 .textContent =
                 "Circlys per click: " +
                 clickPower;
 
-            document.getElementById("doubleCost")
+            document.getElementById("upgradeLevel")
                 .textContent =
-                doubleCost;
+                "Upgrade Level: " +
+                upgradeLevel +
+                " / 20";
+
+            document.getElementById("upgradeNumber")
+                .textContent =
+                Math.min(
+                    upgradeLevel + 1,
+                    20
+                );
+
+            document.getElementById("upgradeCost")
+                .textContent =
+                upgradeCost;
 
             document.getElementById("generatorCost")
                 .textContent =
                 generatorCost;
 
-            document.getElementById("megaCost")
-                .textContent =
-                megaCost;
-
             saveGame();
         }
 
+
+        /* Click animation */
+
+        function animateCircly() {
+
+            const circly =
+                document.getElementById("circlyClicker");
+
+            circly.classList.remove(
+                "circly-click-animation"
+            );
+
+            void circly.offsetWidth;
+
+            circly.classList.add(
+                "circly-click-animation"
+            );
+        }
+
+
+        /* Click Circly */
 
         function clickCircly() {
 
             circlys += clickPower;
 
+            animateCircly();
+
             updateClicker();
-
         }
 
 
-        document
-            .getElementById("circlyClicker")
-            .addEventListener("click", clickCircly);
+        /* Buy upgrade */
 
+        function buyUpgrade() {
 
-        function buyDoubleClick() {
+            if (upgradeLevel >= 20) {
 
-            if (circlys >= doubleCost) {
-
-                circlys -= doubleCost;
-
-                clickPower *= 2;
-
-                doubleCost =
-                    Math.floor(doubleCost * 2.5);
-
-                updateClicker();
-
-            }
-
-        }
-
-
-        function buyGenerator() {
-
-            if (circlys >= generatorCost) {
-
-                circlys -= generatorCost;
-
-                cps += 1;
-
-                generatorCost =
-                    Math.floor(generatorCost * 1.8);
-
-                updateClicker();
-
-            }
-
-        }
-
-
-        function buyMegaCircly() {
-
-            if (circlys >= megaCost) {
-
-                circlys -= megaCost;
-
-                clickPower += 25;
-
-                cps += 5;
-
-                megaCost =
-                    Math.floor(megaCost * 3);
-
-                updateClicker();
-
-            }
-
-        }
-
-
-        function resetClicker() {
-
-            const confirmReset =
-                confirm(
-                    "Are you sure you want to reset ALL your Circlys?"
+                alert(
+                    "MAX CIRCly UPGRADE REACHED!"
                 );
 
-            if (!confirmReset) {
                 return;
             }
 
-            circlys = 0;
-            clickPower = 1;
-            cps = 0;
-            doubleCost = 25;
-            generatorCost = 100;
-            megaCost = 1000;
+
+            if (circlys < upgradeCost) {
+
+                alert(
+                    "You don't have enough Circlys!"
+                );
+
+                return;
+            }
+
+
+            circlys -= upgradeCost;
+
+            upgradeLevel += 1;
+
+
+            /*
+             * Every upgrade becomes stronger.
+             */
+
+            clickPower += upgradeLevel * 2;
+
+
+            /*
+             * Change to circly2 after
+             * the first upgrade.
+             */
+
+            document.getElementById(
+                "circlyClicker"
+            ).src =
+                "images/circly2.png";
+
+
+            /*
+             * Play BFDI gasp.
+             */
+
+            upgradeSound.currentTime = 0;
+
+            upgradeSound.play().catch(() => {
+                console.log(
+                    "Browser blocked the upgrade sound."
+                );
+            });
+
+
+            /*
+             * Make the next upgrade
+             * more expensive.
+             */
+
+            upgradeCost =
+                Math.floor(
+                    upgradeCost * 1.7
+                );
+
 
             updateClicker();
-
         }
 
 
-        /* Automatic Circly generation */
+        /* Generator */
+
+        function buyGenerator() {
+
+            if (circlys < generatorCost) {
+
+                alert(
+                    "You don't have enough Circlys!"
+                );
+
+                return;
+            }
+
+
+            circlys -= generatorCost;
+
+            cps += 1;
+
+
+            generatorCost =
+                Math.floor(
+                    generatorCost * 1.8
+                );
+
+
+            updateClicker();
+        }
+
+
+        /* Automatic generation */
 
         setInterval(function () {
 
@@ -605,6 +674,45 @@
 
         }, 1000);
 
+
+        /* Reset game */
+
+        function resetClicker() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to reset ALL your Circlys?"
+                );
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            circlys = 0;
+
+            clickPower = 1;
+
+            cps = 0;
+
+            upgradeLevel = 0;
+
+            upgradeCost = 25;
+
+            generatorCost = 100;
+
+
+            document.getElementById(
+                "circlyClicker"
+            ).src =
+                "images/circly3.png";
+
+
+            updateClicker();
+        }
+
+
+        /* Start game */
 
         updateClicker();
 

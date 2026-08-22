@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+
 /* =========================
    GLOBAL
    ========================= */
@@ -16,6 +17,7 @@ body {
     padding: 20px;
     min-height: 100vh;
 }
+
 
 /* =========================
    GLOWING TEXT
@@ -34,6 +36,7 @@ a {
         0 0 10px #ff66cc,
         0 0 20px #ff66cc;
 }
+
 
 /* =========================
    LINKS
@@ -56,6 +59,7 @@ a:hover {
 
     transform: scale(1.1);
 }
+
 
 /* =========================
    NAVIGATION
@@ -84,6 +88,7 @@ nav a {
     color: #ff66cc;
 }
 
+
 /* =========================
    SECTIONS / PAGES
    ========================= */
@@ -110,6 +115,7 @@ section:hover {
         0 0 30px #66aaff,
         0 0 50px #66aaff;
 }
+
 
 /* =========================
    CARDS
@@ -140,6 +146,7 @@ section:hover {
         0 0 50px #66aaff;
 }
 
+
 /* =========================
    IMAGES
    ========================= */
@@ -165,6 +172,7 @@ img:hover {
         0 0 30px #66aaff;
 }
 
+
 /* =========================
    BLUE TEXT
    ========================= */
@@ -177,6 +185,7 @@ img:hover {
         0 0 10px #66aaff,
         0 0 20px #66aaff;
 }
+
 
 /* =========================
    BUTTONS
@@ -215,6 +224,7 @@ button:hover {
     transform: scale(1.05);
 }
 
+
 /* =========================
    MOBILE
    ========================= */
@@ -235,6 +245,8 @@ button:hover {
     }
 
 }
+
+
 /* =========================
    iOS 6 SIMULATOR
    ========================= */
@@ -244,7 +256,6 @@ button:hover {
     height: 568px;
 
     margin: 30px auto;
-
     padding: 12px;
 
     background: #111;
@@ -276,4 +287,69 @@ button:hover {
     height: 100%;
 
     border: none;
+}
+
+
+/* =========================
+   CIRCLY CLICKER
+   ========================= */
+
+#circlyClicker {
+    cursor: pointer;
+    max-width: 250px;
+    user-select: none;
+}
+
+.circly-click-animation {
+    animation: circlyClick 0.2s ease;
+}
+
+@keyframes circlyClick {
+
+    0% {
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+
+    35% {
+        transform:
+            scale(0.82)
+            rotate(-6deg);
+    }
+
+    65% {
+        transform:
+            scale(1.12)
+            rotate(6deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+
+}
+
+
+/* =========================
+   GALLERY
+   ========================= */
+
+.gallery {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(180px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    box-sizing: border-box;
 }
