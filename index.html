@@ -163,29 +163,12 @@
 
             <h3>My Hobbies</h3>
 
-            <p>
-                Animation
-            </p>
-
-            <p>
-                Coding
-            </p>
-
-            <p>
-                Making games
-            </p>
-
-            <p>
-                Messing with computers
-            </p>
-
-            <p>
-                BFDI / object shows
-            </p>
-
-            <p>
-                Making random projects
-            </p>
+            <p>Animation</p>
+            <p>Coding</p>
+            <p>Making games</p>
+            <p>Messing with computers</p>
+            <p>BFDI / object shows</p>
+            <p>Making random projects</p>
 
         </div>
 
@@ -251,21 +234,10 @@
 
             <h3>Animation Energy</h3>
 
-            <p>
-                Frames: MANY
-            </p>
-
-            <p>
-                Random ideas: TOO MANY
-            </p>
-
-            <p>
-                “One more change”: 47
-            </p>
-
-            <p>
-                Final result: HEHEEE
-            </p>
+            <p>Frames: MANY</p>
+            <p>Random ideas: TOO MANY</p>
+            <p>“One more change”: 47</p>
+            <p>Final result: HEHEEE</p>
 
         </div>
 
@@ -304,25 +276,11 @@
 
             <h3>Things I do on it</h3>
 
-            <p>
-                Code websites
-            </p>
-
-            <p>
-                Animate
-            </p>
-
-            <p>
-                Make games and experiments
-            </p>
-
-            <p>
-                Mess with old operating systems
-            </p>
-
-            <p>
-                Browse the internet
-            </p>
+            <p>Code websites</p>
+            <p>Animate</p>
+            <p>Make games and experiments</p>
+            <p>Mess with old operating systems</p>
+            <p>Browse the internet</p>
 
         </div>
 
@@ -488,8 +446,6 @@
         </div>
 
 
-        <!-- Upgrades -->
-
         <div class="card">
 
             <h3>Upgrades</h3>
@@ -515,8 +471,6 @@
 
         </div>
 
-
-        <!-- Generator -->
 
         <div class="card">
 
@@ -558,14 +512,12 @@
         <h2>Random Games</h2>
 
 
-        <!-- Reaction Test -->
-
         <div class="card">
 
             <h3>Circly Reaction Test</h3>
 
             <p>
-                Click the button as soon as it turns green.
+                Click the box as soon as it turns green.
             </p>
 
             <div
@@ -586,8 +538,6 @@
 
         </div>
 
-
-        <!-- Guess Game -->
 
         <div class="card">
 
@@ -615,8 +565,6 @@
         </div>
 
 
-        <!-- Lucky Circly -->
-
         <div class="card">
 
             <h3>Lucky Circly</h3>
@@ -638,7 +586,7 @@
     </section>
 
 
-    <!-- Theme Changer -->
+    <!-- Themes -->
 
     <section id="themes">
 
@@ -648,10 +596,9 @@
             Because one theme obviously wasn't enough.
         </p>
 
-
         <div class="theme-grid">
 
-            <button onclick="setTheme('pink')">
+            <button onclick="setTheme('circly')">
                 Circly Pink
             </button>
 
@@ -842,11 +789,8 @@
                 .textContent =
                 cps;
 
-            document.getElementById("circlyClicker")
-                .src =
-                getIdleImage();
-
             saveGame();
+
         }
 
 
@@ -994,7 +938,6 @@
                     generatorCost * 1.8
                 );
 
-
             updateClicker();
 
         }
@@ -1045,9 +988,7 @@
            ========================= */
 
         let reactionReady = false;
-
         let reactionStart = 0;
-
         let reactionTimer = null;
 
         let bestReaction =
@@ -1085,10 +1026,10 @@
                 reactionBox.textContent =
                     time + " ms";
 
+
                 if (time < bestReaction) {
 
-                    bestReaction =
-                        time;
+                    bestReaction = time;
 
                     localStorage.setItem(
                         "bestReaction",
@@ -1133,8 +1074,7 @@
 
             const delay =
                 1000 +
-                Math.random() *
-                3000;
+                Math.random() * 3000;
 
 
             clearTimeout(
@@ -1146,8 +1086,7 @@
                 setTimeout(
                     function() {
 
-                        reactionReady =
-                            true;
+                        reactionReady = true;
 
                         reactionStart =
                             Date.now();
@@ -1265,23 +1204,14 @@
             const results = [
 
                 "CIRCly BLESSES YOU.",
-
                 "You found nothing. HEHEEE.",
-
                 "COSMIC BROWNIE LUCK.",
-
                 "BFDI ENERGY ACQUIRED.",
-
                 "YOU ARE EXTREMELY LUCKY.",
-
                 "Circly looked at you and left.",
-
                 "NEURONS +10.",
-
                 "You have been granted MAXIMUM SILLY.",
-
                 "The universe said yes.",
-
                 "The universe said absolutely not."
 
             ];
@@ -1310,8 +1240,17 @@
 
         function setTheme(theme) {
 
-            document.body.dataset.theme =
-                theme;
+            document.body.classList.remove(
+                "theme-circly",
+                "theme-cyan",
+                "theme-purple",
+                "theme-green",
+                "theme-sunset"
+            );
+
+            document.body.classList.add(
+                "theme-" + theme
+            );
 
             localStorage.setItem(
                 "circlyTheme",
@@ -1324,16 +1263,10 @@
         const savedTheme =
             localStorage.getItem(
                 "circlyTheme"
-            );
+            ) || "circly";
 
 
-        if (savedTheme) {
-
-            setTheme(
-                savedTheme
-            );
-
-        }
+        setTheme(savedTheme);
 
     </script>
 
