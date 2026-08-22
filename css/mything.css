@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* =========================
+   GLOBAL
+   ========================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #051f4e;
+    color: #ff66cc;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* =========================
+   GLOWING TEXT
+   ========================= */
+
+h1,
+h2,
+h3,
+p,
+span,
+a {
+    color: #ff66cc;
+
+    text-shadow:
+        0 0 5px #ff66cc,
+        0 0 10px #ff66cc,
+        0 0 20px #ff66cc;
+}
+
+/* =========================
+   LINKS
+   ========================= */
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: cyan;
+
+    text-shadow:
+        0 0 5px cyan,
+        0 0 10px cyan,
+        0 0 20px cyan,
+        0 0 40px cyan;
+
+    transform: scale(1.1);
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    background: rgba(5, 25, 65, 0.9);
+
+    border: 1px solid #66aaff;
+    border-radius: 15px;
+
+    padding: 18px;
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 0 10px #66aaff,
+        0 0 20px #66aaff;
+}
+
+nav a {
+    color: #ff66cc;
+}
+
+/* =========================
+   SECTIONS / PAGES
+   ========================= */
+
+section {
+    background: rgba(20, 40, 80, 0.8);
+
+    border: 1px solid #66aaff;
+    border-radius: 15px;
+
+    padding: 30px;
+    margin: 25px 0;
+
+    box-shadow:
+        0 0 10px #66aaff,
+        0 0 20px #66aaff;
+
+    transition: all 0.3s ease;
+}
+
+section:hover {
+    box-shadow:
+        0 0 15px #66aaff,
+        0 0 30px #66aaff,
+        0 0 50px #66aaff;
+}
+
+/* =========================
+   CARDS
+   ========================= */
+
+.card {
+    background: rgba(20, 40, 80, 0.8);
+
+    border: 1px solid #66aaff;
+    border-radius: 12px;
+
+    padding: 20px;
+    margin: 20px 0;
+
+    box-shadow:
+        0 0 10px #66aaff,
+        0 0 20px #66aaff;
+
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 0 15px #66aaff,
+        0 0 30px #66aaff,
+        0 0 50px #66aaff;
+}
+
+/* =========================
+   IMAGES
+   ========================= */
+
+img {
+    max-width: 100%;
+    height: auto;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 0 10px #66aaff,
+        0 0 20px #66aaff;
+
+    transition: all 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 15px #66aaff,
+        0 0 30px #66aaff;
+}
+
+/* =========================
+   BLUE TEXT
+   ========================= */
+
+.last-word {
+    color: #66aaff;
+
+    text-shadow:
+        0 0 5px #66aaff,
+        0 0 10px #66aaff,
+        0 0 20px #66aaff;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button {
+    background: #051f4e;
+    color: #ff66cc;
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+
+    border: 1px solid #66aaff;
+    border-radius: 10px;
+
+    padding: 10px 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 10px #66aaff;
+
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    color: cyan;
+
+    border-color: cyan;
+
+    box-shadow:
+        0 0 10px cyan,
+        0 0 20px cyan,
+        0 0 30px cyan;
+
+    transform: scale(1.05);
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+}
+/* =========================
+   iOS 6 SIMULATOR
+   ========================= */
+
+.iphone-frame {
+    width: 320px;
+    height: 568px;
+
+    margin: 30px auto;
+
+    padding: 12px;
+
+    background: #111;
+
+    border: 3px solid #555;
+    border-radius: 40px;
+
+    box-shadow:
+        0 0 10px #66aaff,
+        0 0 25px #66aaff,
+        0 0 50px #66aaff;
+
+    box-sizing: border-box;
+}
+
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background: black;
+}
+
+.iphone-screen iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+}
