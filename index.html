@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>CirclyOSC</title>
+    <title>Circly™'s Site</title>
     <link type="text/css" rel="stylesheet" href="css/mything.css">
 </head>
 
@@ -10,15 +10,15 @@
 
     <!-- Navigation -->
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#youtube">YouTube</a>
-    <a href="#projects">Projects</a>
-    <a href="#ios6">iOS 6</a>
-    <a href="#gallery">Gallery</a>
-    <a href="brainrotcorner/">Brainrot Corner</a>
-</nav>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#youtube">YouTube</a>
+        <a href="#projects">Projects</a>
+        <a href="#ios6">iOS 6</a>
+        <a href="#gallery">Gallery</a>
+        <a href="brainrotcorner/">Brainrot Corner</a>
+    </nav>
 
 
     <!-- Home -->
@@ -212,42 +212,28 @@
 
 
     <!-- iOS 6 Simulator -->
-<section id="ios6">
 
-    <h2>My iOS 6 Simulator</h2>
+    <section id="ios6">
 
-    <p>
-        I made this thing in Sekai. Try it out!
-    </p>
+        <h2>My iOS 6 Simulator</h2>
 
-    <div class="iphone-frame" id="iphone">
+        <p>
+            I made this thing in Sekai. Try it out!
+        </p>
 
-        <div class="iphone-screen" id="iphone-screen">
+        <div class="iphone-frame">
 
-            <button onclick="startIOS6()">
-                Play!
-            </button>
+            <div class="iphone-screen" id="iphone-screen">
+
+                <button onclick="startIOS6()">
+                    Play!
+                </button>
+
+            </div>
 
         </div>
 
-    </div>
-
-</section>
-
-<script>
-function startIOS6() {
-
-    const screen = document.getElementById("iphone-screen");
-
-    screen.innerHTML = `
-        <iframe
-            src="https://link.prod.sekai.chat/S778gd"
-            frameborder="0"
-            allowfullscreen>
-        </iframe>
-    `;
-}
-</script>
+    </section>
 
 
     <!-- Gallery -->
@@ -256,25 +242,11 @@ function startIOS6() {
 
         <h2>Gallery</h2>
 
-
         <div class="gallery">
 
             <img
                 src="images/circly.png"
                 alt="Circly's picture">
-
-
-            <!-- Add more images here -->
-
-            <!--
-            <img
-                src="images/ios6.png"
-                alt="iOS 6 Simulator">
-
-            <img
-                src="images/project.png"
-                alt="My project">
-            -->
 
         </div>
 
@@ -295,6 +267,22 @@ function startIOS6() {
 
     </section>
 
+
+    <script>
+        function startIOS6() {
+
+            const screen =
+                document.getElementById("iphone-screen");
+
+            screen.innerHTML = `
+                <iframe
+                    src="https://link.prod.sekai.chat/S778gd"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            `;
+        }
+    </script>
 
 </body>
 
