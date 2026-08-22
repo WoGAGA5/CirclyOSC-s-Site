@@ -5,130 +5,14 @@
    THEME VARIABLES
    ========================= */
 
-body {
+:root {
 
+    --theme-background: #3e0418;
     --theme-text: #ff66cc;
     --theme-accent: #66aaff;
     --theme-panel: rgba(20, 40, 80, 0.8);
     --theme-nav: rgba(5, 25, 65, 0.9);
     --theme-button: #051f4e;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(120, 150, 255, 0.08),
-            transparent 40%
-        ),
-        #3e0418;
-
-    color: var(--theme-text);
-
-    font-family:
-        'Inter',
-        sans-serif;
-
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-
-    transition:
-        background 0.35s ease,
-        color 0.35s ease;
-
-}
-
-
-body.theme-circly {
-
-    --theme-text: #ff66cc;
-    --theme-accent: #66aaff;
-    --theme-panel: rgba(20, 40, 80, 0.8);
-    --theme-nav: rgba(5, 25, 65, 0.9);
-    --theme-button: #051f4e;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(120, 150, 255, 0.08),
-            transparent 40%
-        ),
-        #3e0418;
-
-}
-
-
-body.theme-cyan {
-
-    --theme-text: #62f5ff;
-    --theme-accent: #00d9ff;
-    --theme-panel: rgba(5, 45, 65, 0.82);
-    --theme-nav: rgba(3, 28, 45, 0.95);
-    --theme-button: #062f45;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(0, 220, 255, 0.14),
-            transparent 40%
-        ),
-        #031f2d;
-
-}
-
-
-body.theme-purple {
-
-    --theme-text: #d68cff;
-    --theme-accent: #a66cff;
-    --theme-panel: rgba(45, 20, 80, 0.82);
-    --theme-nav: rgba(25, 8, 50, 0.95);
-    --theme-button: #29104d;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(180, 100, 255, 0.14),
-            transparent 40%
-        ),
-        #16052f;
-
-}
-
-
-body.theme-green {
-
-    --theme-text: #65ff9c;
-    --theme-accent: #32ff7e;
-    --theme-panel: rgba(15, 55, 35, 0.82);
-    --theme-nav: rgba(5, 30, 18, 0.95);
-    --theme-button: #0c4126;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(50, 255, 130, 0.12),
-            transparent 40%
-        ),
-        #071f13;
-
-}
-
-
-body.theme-sunset {
-
-    --theme-text: #ffb05c;
-    --theme-accent: #ff6b8a;
-    --theme-panel: rgba(75, 30, 20, 0.82);
-    --theme-nav: rgba(50, 18, 10, 0.95);
-    --theme-button: #59200f;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(255, 100, 100, 0.14),
-            transparent 40%
-        ),
-        #35130b;
 
 }
 
@@ -139,6 +23,39 @@ body.theme-sunset {
 
 html {
     scroll-behavior: smooth;
+}
+
+
+body {
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(120, 150, 255, 0.08),
+            transparent 40%
+        ),
+        var(--theme-background);
+
+    color:
+        var(--theme-text);
+
+    font-family:
+        'Inter',
+        sans-serif;
+
+    margin:
+        0;
+
+    padding:
+        20px;
+
+    min-height:
+        100vh;
+
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+
 }
 
 
@@ -170,9 +87,11 @@ a {
 
 a {
 
-    text-decoration: none;
+    text-decoration:
+        none;
 
-    display: inline-block;
+    display:
+        inline-block;
 
     transition:
         all 0.2s ease;
@@ -203,14 +122,20 @@ a:hover {
 
 nav {
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
-    align-items: center;
+    justify-content:
+        center;
 
-    gap: 25px;
+    align-items:
+        center;
 
-    flex-wrap: wrap;
+    gap:
+        25px;
+
+    flex-wrap:
+        wrap;
 
     background:
         var(--theme-nav);
@@ -726,7 +651,7 @@ input::placeholder {
 
 
 /* =========================
-   THEMES
+   THEME BUTTONS
    ========================= */
 
 .theme-grid {
@@ -785,12 +710,9 @@ input::placeholder {
 @media (max-width: 600px) {
 
     body {
-
         padding:
             10px;
-
     }
-
 
     nav {
 
@@ -802,7 +724,6 @@ input::placeholder {
 
     }
 
-
     section {
 
         padding:
@@ -810,14 +731,12 @@ input::placeholder {
 
     }
 
-
     iframe {
 
         max-width:
             100%;
 
     }
-
 
     .iphone-frame {
 
